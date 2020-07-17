@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_one_attached :photo
+  has_one_attached :photo2
   validates :f_name, presence: true
   validates :f_name, length: { minimum: 4 }
   validates :l_name, presence: true
