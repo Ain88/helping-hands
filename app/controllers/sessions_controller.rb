@@ -35,6 +35,7 @@ def destroy
       logged_out: true
     }
   end
+
 private
 def session_params
     params.require(:user).permit(:f_name, :l_name, :email, :photo, :password)
