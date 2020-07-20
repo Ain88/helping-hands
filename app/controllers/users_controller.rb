@@ -5,11 +5,12 @@ class UsersController < ApplicationController
  end
 
  def create
-     @User = User.create(user_params)
+     @user = User.create(user_params)
  end
-
+#
 # def index
 #     @users = User.all
+#
 #     if @users
 #       render json: {
 #         users: @users
@@ -37,8 +38,8 @@ class UsersController < ApplicationController
 #   end
 #
 #   def create
-#
 #     @user = User.new(user_params)
+#
 #     if @user.save
 #       login!
 #       render json: {
@@ -58,4 +59,5 @@ private
   def user_params
     params.permit(:f_name, :l_name, :email, :password, :password_confirmation, :photo)
   end
+
 end
