@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :enrollments
   has_many :requests, through: :enrollments
+  has_many :created_requests, class_name: "Request", foreign_key: "owner_id"
 
   has_secure_password
   has_one_attached :photo
