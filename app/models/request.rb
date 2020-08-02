@@ -3,7 +3,7 @@ class Request < ApplicationRecord
   has_many :users, through: :enrollments
   belongs_to :owner, class_name: "User"
 
-  validates :type, presence: true
+  validates :typev, presence: true
   validates :title, presence: true
   validates :title, length: { minimum: 4 }
   validates :description, presence: true

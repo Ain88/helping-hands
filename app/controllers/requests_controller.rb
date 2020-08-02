@@ -5,7 +5,6 @@ class RequestsController < ApplicationController
 
   def create
      @request = Request.new(request_params)
-     render json: @request
 
      if @request.save
        render json: {
@@ -32,7 +31,7 @@ class RequestsController < ApplicationController
 private
 
   def request_params
-    params.permit(:title, :type, :description, :location)
+    params.permit(:title, :typev, :description, :location, :user_id)
   end
 
 end
