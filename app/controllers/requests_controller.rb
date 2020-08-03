@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   def index
-       render json: Request.all
+    @requests = Request.all
+    render json: @requests
   end
 
   def create
@@ -31,7 +32,7 @@ class RequestsController < ApplicationController
 private
 
   def request_params
-    params.permit(:title, :typev, :description, :location, :user_id)
+    params.permit(:title, :typev, :description, :location, :owner_id)
   end
 
 end
