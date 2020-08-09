@@ -9,4 +9,5 @@ class Request < ApplicationRecord
   validates :description, presence: true
   validates :description, length: { minimun: 4, maximum: 300 }
   validates :location, presence: true
+  validates :counter, presence: true
 end
