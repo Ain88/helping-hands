@@ -3,6 +3,11 @@ class RequestsController < ApplicationController
     render json: Request.all
   end
 
+  def edit
+   @request = Request.find(params[:id])
+   render json: @request
+  end
+
   def create
      @request = Request.new(request_params)
 
