@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_10_202514) do
+ActiveRecord::Schema.define(version: 2020_08_20_115201) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 2020_08_10_202514) do
   create_table "chat_rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "users_id"
+    t.string "title"
+    t.index ["users_id"], name: "index_chat_rooms_on_users_id"
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -51,6 +54,11 @@ ActiveRecord::Schema.define(version: 2020_08_10_202514) do
   create_table "messages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "users_id"
+    t.integer "chat_rooms_id"
+    t.string "body"
+    t.index ["chat_rooms_id"], name: "index_messages_on_chat_rooms_id"
+    t.index ["users_id"], name: "index_messages_on_users_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -78,7 +86,10 @@ ActiveRecord::Schema.define(version: 2020_08_10_202514) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chat_rooms", "users", column: "users_id"
   add_foreign_key "enrollments", "requests"
   add_foreign_key "enrollments", "users"
+  add_foreign_key "messages", "chat_rooms", column: "chat_rooms_id"
+  add_foreign_key "messages", "users", column: "users_id"
   add_foreign_key "requests", "users", column: "owner_id"
 end
