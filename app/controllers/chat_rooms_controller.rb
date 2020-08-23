@@ -10,7 +10,7 @@ class ChatRoomsController < ApplicationController
   end
 
   def create
-    @chat_room = ChatRoom.new(chat_room_params)
+    @chat_room = ChatRoom.new(chat_rooms_params)
 
      if @chat_room.save
        render json: {
