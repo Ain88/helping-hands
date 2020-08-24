@@ -9,6 +9,6 @@ class Request < ApplicationRecord
   validates :description, presence: { message: "Description can't be blank" }
   validates :description, length: { minimum: 4, maximum: 300, message: "Description between 4-300 characters" }
   validates :location, presence: { message: "Location can't be blank" }
-  validates :counter, presence: { message: "Counter can't be blank" }
+  validates :counter, presence: { message: "Number of volunteers can't be blank" }
 
 end
