@@ -11,9 +11,9 @@ class EnrollmentsController < ApplicationController
 
   def create
     @enrollment = Enrollment.new(enrollment_params)
-    @request = Request.find(params[:request_id])
+    @request = Request.find(enrollment_params[:request_id])
     @request.increment!(:cur_counter)
-    
+
      if @enrollment.save
        render json: {
          status: :created,

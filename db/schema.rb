@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_115201) do
+ActiveRecord::Schema.define(version: 2020_08_24_082523) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,14 +33,6 @@ ActiveRecord::Schema.define(version: 2020_08_20_115201) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "chat_rooms", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "users_id"
-    t.string "title"
-    t.index ["users_id"], name: "index_chat_rooms_on_users_id"
-  end
-
   create_table "enrollments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "request_id", null: false
@@ -52,13 +44,15 @@ ActiveRecord::Schema.define(version: 2020_08_20_115201) do
   end
 
   create_table "messages", force: :cascade do |t|
+    t.string "body"
+    t.integer "sender_id"
+    t.integer "requests_id", null: false
+    t.integer "receiver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "users_id"
-    t.integer "chat_rooms_id"
-    t.string "body"
-    t.index ["chat_rooms_id"], name: "index_messages_on_chat_rooms_id"
-    t.index ["users_id"], name: "index_messages_on_users_id"
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["requests_id"], name: "index_messages_on_requests_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -86,10 +80,10 @@ ActiveRecord::Schema.define(version: 2020_08_20_115201) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "chat_rooms", "users", column: "users_id"
   add_foreign_key "enrollments", "requests"
   add_foreign_key "enrollments", "users"
-  add_foreign_key "messages", "chat_rooms", column: "chat_rooms_id"
-  add_foreign_key "messages", "users", column: "users_id"
+  add_foreign_key "messages", "requests", column: "requests_id"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "requests", "users", column: "owner_id"
 end
