@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
 
   def index
-    render json: Message.all
+    render json: Message.all.includes(:sender).as_json(include: { sender: { only: [:f_name, :l_name, :id] } })
   end
 
   def edit
