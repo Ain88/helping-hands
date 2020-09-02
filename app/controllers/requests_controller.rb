@@ -8,6 +8,12 @@ class RequestsController < ApplicationController
    render json: @request
   end
 
+  def update
+   @request = Request.find(params[:id])
+   @request.update(request_params)
+   render json: @request
+  end
+
   def create
      @request = Request.new(request_params)
 
@@ -36,7 +42,7 @@ class RequestsController < ApplicationController
 private
 
   def request_params
-    params.permit(:title, :typev, :description, :location, :address, :owner_id, :counter, :cur_counter, :is_active)
+    params.permit(:title, :typev, :description, :location, :address, :owner_id, :counter, :cur_counter, :is_active, :updated_at)
   end
 
 end
