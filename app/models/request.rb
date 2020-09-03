@@ -2,7 +2,7 @@ class Request < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :users, through: :enrollments
   belongs_to :owner, class_name: "User"
-  has_many :messages
+  has_many :created_requests, class_name: "Message", foreign_key: "requests_id"
 
   validates :typev, presence: { message: "Type can't be blank" }
   validates :title, presence: { message: "Title can't be blank" }
