@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_082523) do
+ActiveRecord::Schema.define(version: 2020_09_14_222923) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -35,11 +35,12 @@ ActiveRecord::Schema.define(version: 2020_08_24_082523) do
 
   create_table "enrollments", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "request_id", null: false
+    t.integer "requests_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "finished"
-    t.index ["request_id"], name: "index_enrollments_on_request_id"
+    t.integer "check_mark"
+    t.index ["requests_id"], name: "index_enrollments_on_requests_id"
     t.index ["user_id"], name: "index_enrollments_on_user_id"
   end
 
@@ -55,6 +56,13 @@ ActiveRecord::Schema.define(version: 2020_08_24_082523) do
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.string "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "fulfilled"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string "typev"
     t.string "location"
@@ -67,7 +75,22 @@ ActiveRecord::Schema.define(version: 2020_08_24_082523) do
     t.integer "counter"
     t.integer "cur_counter"
     t.integer "is_active"
+    t.datetime "rep_date"
+    t.integer "check_mark"
+    t.integer "fulfilled"
     t.index ["owner_id"], name: "index_requests_on_owner_id"
+  end
+
+  create_table "stats", force: :cascade do |t|
+    t.integer "final_counter"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "requests_id", null: false
+    t.integer "enrollments_id", null: false
+    t.integer "messages_id", null: false
+    t.index ["enrollments_id"], name: "index_stats_on_enrollments_id"
+    t.index ["messages_id"], name: "index_stats_on_messages_id"
+    t.index ["requests_id"], name: "index_stats_on_requests_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,10 +103,13 @@ ActiveRecord::Schema.define(version: 2020_08_24_082523) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "enrollments", "requests"
+  add_foreign_key "enrollments", "requests", column: "requests_id"
   add_foreign_key "enrollments", "users"
   add_foreign_key "messages", "requests", column: "requests_id"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "requests", "users", column: "owner_id"
+  add_foreign_key "stats", "enrollments", column: "enrollments_id"
+  add_foreign_key "stats", "messages", column: "messages_id"
+  add_foreign_key "stats", "requests", column: "requests_id"
 end

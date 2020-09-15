@@ -15,6 +15,7 @@ def create
       }
     end
   end
+
 def is_logged_in?
     if logged_in? && current_user
       render json: {

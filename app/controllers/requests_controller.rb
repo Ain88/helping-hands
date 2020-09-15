@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   def index
-    render json: Request.all
+    @request = Request.all
+    render json: @request
   end
 
   def edit
@@ -42,7 +43,7 @@ class RequestsController < ApplicationController
 private
 
   def request_params
-    params.permit(:title, :typev, :description, :location, :address, :owner_id, :counter, :cur_counter, :is_active, :updated_at)
+    params.permit(:title, :typev, :description, :location, :address, :owner_id, :counter, :cur_counter, :is_active, :updated_at, :rep_date, :check_mark)
   end
 
 end
