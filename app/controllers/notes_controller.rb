@@ -3,6 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   # GET /notes.json
+
   def index
     @notes = Note.all
   end
@@ -40,6 +41,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
+
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to @note, notice: 'Note was successfully updated.' }
