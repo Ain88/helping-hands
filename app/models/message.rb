@@ -8,4 +8,5 @@ class Message < ApplicationRecord
   validates :requests_id, presence: { message: "Choose request topic" }
   validates :receiver_id, presence: { message: "Choose receiver" }
   validates :sender_id, presence: { message: "Choose sender" }
+  after_commit { ApplicationJob.perform_later self }
 end

@@ -1,21 +1,21 @@
-development:
-  adapter: async
-
-test:
-  adapter: async
-
-production:
-  adapter: async
-# 
 # development:
-#   adapter: redis
-#   url: redis://127.0.0.1:6379/0
+#   adapter: async
 #
 # test:
-#   adapter: redis
-#   url: redis://127.0.0.1:6379/0
+#   adapter: async
 #
 # production:
-#   adapter: redis
-#   url: redis://127.0.0.1:6379/0
-#   channel_prefix: help_van_production
+#   adapter: async
+
+development:
+  adapter: redis
+  url: redis://127.0.0.1:6379/0
+
+test:
+  adapter: redis
+  url: redis://127.0.0.1:6379/0
+
+production:
+  adapter: redis
+  url: redis://127.0.0.1:6379/0
+  channel_prefix: help_van_production
