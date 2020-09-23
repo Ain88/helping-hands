@@ -14,7 +14,7 @@ class NotesChannel < ApplicationCable::Channel
   end
 
   def away
-    fulfilled = Request.where(fulfilled: 1).count.to_s
+    fulfilled = Request.where(fulfilled: 1).count
     # if(Note.find(1).text != fulfilled)
     #   note = Note.find(1)
     #   note.update!(text: fulfilled)

@@ -2,7 +2,7 @@ class EnrollmentsController < ApplicationController
 
   def index
     @enrollment = Enrollment.all
-    render :json => @enrollment, :include => {:requests => {:only => [:id, :rep_date, :check_mark]}}
+    render :json => @enrollment, :include => {:requests => {:only => [:id, :rep_date, :check_mark, :cur_counter]}}
   end
 
   def edit
@@ -20,6 +20,11 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new(enrollment_params)
     @request = Request.find(enrollment_params[:requests_id])
     @request.increment!(:cur_counter)
+    if((Request.where(@request.cur_counter == @request.counter) || @request.check_mark == 1) == true)
+      @request.update!(fulfilled: 1)
+    else
+      @request.update!(fulfilled: 0)
+    end
 
      if @enrollment.save
        render json: {
@@ -46,7 +51,7 @@ class EnrollmentsController < ApplicationController
 private
 
   def enrollment_params
-    params.require(:enrollment).permit(:user_id, :request_id, :finished, :check_mark, :requests)
+    params.permit(:user_id, :request_id, :finished, :check_mark, :requests, :finished)
   end
 
 end

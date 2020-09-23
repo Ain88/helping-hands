@@ -8,7 +8,7 @@ class ApplicationJob < ActiveJob::Base
 
   def perform(data)
     note = Note.find(1)
-    fulfilled = Request.where(fulfilled: 1).count.to_s
+    fulfilled = Request.where(fulfilled: 1).count
     if(note.text != fulfilled)
       note.update!(text: fulfilled)
       ActionCable.server.broadcast('abc', fulfilled)
