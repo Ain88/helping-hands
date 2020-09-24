@@ -20,7 +20,7 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new(enrollment_params)
     @request = Request.find(enrollment_params[:requests_id])
     @request.increment!(:cur_counter)
-    if((Request.where(@request.cur_counter == @request.counter) || @request.check_mark == 1) == true)
+    if((Request.where(@request.id.cur_counter == @request.id.counter) || @request.id.check_mark == 1) == true)
       @request.update!(fulfilled: 1)
     else
       @request.update!(fulfilled: 0)
@@ -46,6 +46,14 @@ class EnrollmentsController < ApplicationController
 
   def destroy
     Enrollment.destroy(params[:id])
+    @request = Request.find(enrollment_params[:requests_id])
+    @request.decrement!(:cur_counter)
+
+    if((Request.where(@request.id.cur_counter == @request.id.counter) || @request.id.check_mark == 1) == true)
+      @request.update!(fulfilled: 1)
+    else
+      @request.update!(fulfilled: 0)
+    end
   end
 
 private

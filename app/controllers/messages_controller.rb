@@ -13,22 +13,6 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
-    if(@message.sender_id == @message.requests.owner_id)
-      @enr = Enrollment.where(user_id: @message.receiver_id, requests_id: @message.requests_id)
-    else
-      @enr = Enrollment.where(user_id: @message.sender_id, requests_id: @message.requests_id)
-    end
-
-    @enr.increment_counter(:finished, 1, touch: true)
-
-    if((Enrollment.where("finished>=? and check_mark=? and requests_id=?", 2,1,@message.requests_id).count >= @message.requests.counter) || @message.requests.check_mark == 1) == true
-      @message.requests.update!(fulfilled: 1)
-    else
-      @message.requests.update!(fulfilled: 0)
-    end
-    # ((Enrollment.where("finished>=? and check_mark=? and requests_id=?", 2,1,@message.requests_id).count >= Request.find_by(id:@message.requests_id).counter) || Request.find_by(id:@message.requests_id).check_mark == 1) == true ?
-    #   Request.find(@message.requests_id).fulfilled = 1 : ""
-
      if @message.save
        render json: {
          status: :created,

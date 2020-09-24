@@ -12,7 +12,7 @@ class RequestsController < ApplicationController
   def update
    @request = Request.find(params[:id])
    @request.update(request_params)
-   if((Request.where(@request.cur_counter == @request.counter) || @request.check_mark == 1) == true)
+   if((@request.cur_counter == @request.counter || @request.check_mark == 1) == true)
      @request.update!(fulfilled: 1)
    else
      @request.update!(fulfilled: 0)
