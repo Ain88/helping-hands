@@ -2,7 +2,8 @@ class EnrollmentsController < ApplicationController
 
   def index
     @enrollment = Enrollment.all
-    render :json => @enrollment, :include => {:requests => {:only => [:id, :rep_date, :check_mark, :cur_counter]}}
+    render :json => @enrollment, :include => {:requests => {:only => [:id, :rep_date, :check_mark, :cur_counter, :title]},
+                                              :users => {:only => [:id, :f_name, :l_name, :email]}}
   end
 
   def edit
@@ -18,13 +19,8 @@ class EnrollmentsController < ApplicationController
 
   def create
     @enrollment = Enrollment.new(enrollment_params)
-    @request = Request.find(enrollment_params[:requests_id])
+    @request = Request.find(@enrollment.requests_id)
     @request.increment!(:cur_counter)
-    if((Request.where(@request.id.cur_counter == @request.id.counter) || @request.id.check_mark == 1) == true)
-      @request.update!(fulfilled: 1)
-    else
-      @request.update!(fulfilled: 0)
-    end
 
      if @enrollment.save
        render json: {
@@ -45,21 +41,18 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
-    Enrollment.destroy(params[:id])
-    @request = Request.find(enrollment_params[:requests_id])
+    @enrollment = Enrollment.find(params[:id])
+    @request = Request.find(@enrollment.requests_id)
+    # @request = Request.find(enrollment_params[:requests_id])
     @request.decrement!(:cur_counter)
+    @enrollment.destroy
 
-    if((Request.where(@request.id.cur_counter == @request.id.counter) || @request.id.check_mark == 1) == true)
-      @request.update!(fulfilled: 1)
-    else
-      @request.update!(fulfilled: 0)
-    end
   end
 
 private
 
   def enrollment_params
-    params.permit(:user_id, :request_id, :finished, :check_mark, :requests, :finished)
+    params.require(:enrollment).permit(:id, :users_id, :requests_id, :finished, :check_mark, :requests, :finished)
   end
 
 end

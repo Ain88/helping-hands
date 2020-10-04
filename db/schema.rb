@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_135022) do
+ActiveRecord::Schema.define(version: 2020_09_25_220420) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 2020_09_24_135022) do
   end
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "users_id", null: false
     t.integer "requests_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "finished"
     t.integer "check_mark"
     t.index ["requests_id"], name: "index_enrollments_on_requests_id"
-    t.index ["user_id"], name: "index_enrollments_on_user_id"
+    t.index ["users_id"], name: "index_enrollments_on_users_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2020_09_24_135022) do
     t.integer "receiver_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "enrollments_id"
     t.index ["receiver_id"], name: "index_messages_on_receiver_id"
     t.index ["requests_id"], name: "index_messages_on_requests_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
@@ -105,8 +104,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_135022) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "enrollments", "requests", column: "requests_id"
-  add_foreign_key "enrollments", "users"
-  add_foreign_key "messages", "enrollments", column: "enrollments_id"
+  add_foreign_key "enrollments", "users", column: "users_id"
   add_foreign_key "messages", "requests", column: "requests_id"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"

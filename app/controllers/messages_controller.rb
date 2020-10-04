@@ -3,7 +3,8 @@ class MessagesController < ApplicationController
   def index
     @message = Message.all
     render :json => @message, :include => { :sender => {:only => [:f_name, :l_name, :id]},
-                                        :requests => {:only => [:id, :title, :owner_id]}}
+                                        :requests => {:only => [:id, :title, :owner_id]},
+                                        :receiver => {:only => [:id, :f_name, :l_name]}}
   end
 
   def edit

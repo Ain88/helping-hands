@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :enrollments, class_name: "Enrollment", foreign_key: "request_id"
+  has_many :created_enrollments, class_name: "Enrollment", foreign_key: "users_id"
   has_many :requests, through: :enrollments, dependent: :destroy
   has_many :created_requests, class_name: "Request", foreign_key: "owner_id"
   has_many :created_senders, class_name: "Message", foreign_key: "sender_id"

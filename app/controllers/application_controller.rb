@@ -21,4 +21,5 @@ class ApplicationController < ActionController::Base
   def index
   ActionCable.server.broadcast 'abc', 'zzz'
   end
+
 end

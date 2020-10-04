@@ -2,7 +2,6 @@ class Message < ApplicationRecord
   belongs_to :sender, class_name: "User", optional: true
   belongs_to :receiver, class_name: "User", optional: true
   belongs_to :requests, class_name: "Request", optional: true
-  belongs_to :enrollments, class_name: "Enrollment", optional: true
 
   validates :body, presence: { message: "Message can't be blank" }
   validates :body, length: { minimum: 4, maximum: 300, message: "Message between 4-300 characters" }
