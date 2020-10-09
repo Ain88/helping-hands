@@ -9,5 +9,6 @@ class UserSerializer < ActiveModel::Serializer
     end
   end
 
+# app.url_for(user.photo)
 
 end

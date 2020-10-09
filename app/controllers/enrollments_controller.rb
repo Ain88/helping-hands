@@ -42,7 +42,8 @@ class EnrollmentsController < ApplicationController
 
   def destroy
     @enrollment = Enrollment.find(params[:id])
-    @request = Request.find(@enrollment.requests_id)
+    @num = @enrollment.requests_id
+    @request = Request.find(@num)
     # @request = Request.find(enrollment_params[:requests_id])
     @request.decrement!(:cur_counter)
     @enrollment.destroy

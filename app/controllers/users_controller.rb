@@ -28,23 +28,16 @@ class UsersController < ApplicationController
     render json: @user
    end
 
-   def index
+def index
     @users = User.all
-
-    if @users
-      render json: {
-        users: @users
-      }
-    else
-      render json: {
-        status: 500,
-        errors: ['no users found'],
-      }
-    end
+    render json: {
+      users: @users
+    }
 end
 
 def show
     @user = User.find(params[:id])
+
    if @user
       render json: {
         user: @user
@@ -56,6 +49,8 @@ def show
       }
     end
   end
+
+  # app.url_for(user.photo)
 
 private
 

@@ -1,11 +1,20 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
-  location: MyString
-  description: MyString
-
-two:
-  type: 
-  location: MyString
-  description: MyString
+  typev: 1
+  title: "test title"
+  location: "test location"
+  description: "test description"
+  owner_id: 2
+  address: "test address"
+  counter: 2
+  is_active: 0
+  rep_date: "2020-09-07T06:56:01.000Z"
+  check_mark: 0
+  fulfilled: 0
+  
+#
+# two:
+#   type:
+#   location: MyString
+#   description: MyString

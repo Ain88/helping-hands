@@ -1,7 +1,13 @@
 require 'test_helper'
 
 class NoteTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @note = Note.new(
+      :text => "test"
+    )
+  end
+
+  test "Note test should work" do
+    assert @note.valid?
+  end
 end
