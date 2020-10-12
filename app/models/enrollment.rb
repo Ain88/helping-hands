@@ -5,4 +5,6 @@ class Enrollment < ApplicationRecord
   after_destroy { ApplicationJob.perform_later self }
   after_commit { EnrollmentJob.perform_later self }
   after_destroy { EnrollmentJob.perform_later self }
+  after_commit { Enrollment2Job.perform_later self }
+  after_destroy { Enrollment2Job.perform_later self }
 end

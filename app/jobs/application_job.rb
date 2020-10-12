@@ -4,8 +4,8 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
-  queue_as :default
-
+  # queue_as :default
+  #
   def perform(data)
     note = Note.find(1)
     fulfilled = Request.where("cur_counter >= counter").count

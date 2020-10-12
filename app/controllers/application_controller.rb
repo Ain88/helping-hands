@@ -18,8 +18,5 @@ class ApplicationController < ActionController::Base
   def logout!
     session.clear
   end
-  def index
-  ActionCable.server.broadcast 'abc', 'zzz'
-  end
 
 end

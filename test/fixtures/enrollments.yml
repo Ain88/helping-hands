@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# one:
-#   user: one
-#   request: one
-#
+one:
+  users_id: 2
+  requests_id: 3
+  finished: 0
+  check_mark: 0
+
 # two:
 #   user: two
 #   request: two
