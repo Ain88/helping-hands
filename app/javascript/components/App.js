@@ -1,8 +1,6 @@
 import React from "react"
 import { Route, Switch } from 'react-router-dom'
 import { Button, Row, Col, Card, Carousel } from 'react-bootstrap';
-import Img1 from './img/bg1.jpg'
-import Img2 from './img/bg2.jpg'
 
 class App extends React.Component {
 render() {
