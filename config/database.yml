@@ -1,17 +1,17 @@
-default: &default
+defaults: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  <<: *defaults
+  <<: *default
   database: helpvan
 
 test:
-  <<: *defaults
+  <<: *default
   database: helpvan
 
 production:
-  <<: *defaults
+  <<: *default
   database: helpvan
   username: ahyoungin
