@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt'
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers'
 gem 'redis'
 # Use Active Storage variant
