@@ -19,8 +19,8 @@ module HelpVan
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*' #replace this url with that of your own heroku client app
-        resource '*', :headers => :any, :methods => :any
+        origins '*'
+        resource '*', headers: :any, methods: :any
       end
     end
 
