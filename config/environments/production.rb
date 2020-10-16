@@ -40,8 +40,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://redistogo-graceful-12000.herokuapp.com/cable'
-  config.action_cable.allowed_request_origins = [ 'https://help-van.herokuapp.com/', /http:\/\/help-van.herokuapp.com.*/ ]
+  config.action_cable.url = 'wss://help-van.herokuapp.com/cable'
+  config.action_cable.allowed_request_origins = [ 'https://jolly-benz-c2004d.netlify.app', /http:\/\/jolly-benz-c2004d.netlify.app.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
