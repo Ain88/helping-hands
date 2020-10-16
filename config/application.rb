@@ -19,8 +19,8 @@ module HelpVan
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3000', 'https://jolly-benz-c2004d.netlify.app/' #replace this url with that of your own heroku client app
-        resource '*', :headers => :any, :methods => [:get]
+        origins '*' #replace this url with that of your own heroku client app
+        resource '*', :headers => :any, :methods => :any
       end
     end
 

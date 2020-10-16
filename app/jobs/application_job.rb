@@ -7,7 +7,7 @@ class ApplicationJob < ActiveJob::Base
   # queue_as :default
   #
   def perform(data)
-    note = Note.find(1)
+    note = Note.find(2)
     fulfilled = Request.where("cur_counter >= counter").count
     if(note.text != fulfilled)
       note.update!(text: fulfilled)

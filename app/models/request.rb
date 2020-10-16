@@ -12,4 +12,11 @@ class Request < ApplicationRecord
   validates :location, presence: { message: "Location can't be blank" }
   validates :counter, presence: { message: "Number of volunteers can't be blank" }
 
+  after_commit { ApplicationJob.perform_later self }
+  after_destroy { ApplicationJob.perform_later self }
+  before_destroy { ApplicationJob.perform_later self }
+  after_commit { EnrollmentJob.perform_later self }
+  after_destroy { EnrollmentJob.perform_later self }
+  before_destroy { EnrollmentJob.perform_later self }
+
 end
