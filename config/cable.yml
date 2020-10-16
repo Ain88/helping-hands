@@ -1,10 +1,13 @@
+redis: &redis
+  adapter: redis
+  url: redis://redistogo-graceful-12000
+
+production: *redis
+
 development:
   adapter: async
 
 test:
-  adapter: async
-
-production:
   adapter: async
 
 # development:
