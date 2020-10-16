@@ -232,7 +232,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
   rails_12factor
-  redis
+  redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
   spring
