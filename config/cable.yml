@@ -1,6 +1,6 @@
 redis: &redis
   adapter: redis
-  url: redis://redistogo-graceful-12000
+  url: redis://redistogo:a1611f7308527d67901dd330a90bf7db@scat.redistogo.com:10474/
 
 production: *redis
 
