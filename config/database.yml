@@ -8,7 +8,7 @@ development:
   database: helpvan
 
 test:
-  <<: *default
+  adapter: sqlite3
   database: helpvan
 
 production:

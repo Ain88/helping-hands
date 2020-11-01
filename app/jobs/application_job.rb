@@ -7,7 +7,7 @@ class ApplicationJob < ActiveJob::Base
   # queue_as :default
   #
   def perform(data)
-    note = Note.find(2)
+    note = Note.find(1)
     fulfilled = Request.where("cur_counter >= counter").count
     if(note.text != fulfilled)
       note.update!(text: fulfilled)
@@ -15,16 +15,5 @@ class ApplicationJob < ActiveJob::Base
     end
     # Do something later
   end
-
-  def request_perform(data)
-    request = Request.all
-    ActionCable.server.broadcast('request', request)
-    # Do something later
-  end
-
-  def enr_perform(data)
-    enr = Enrollment.all
-    ActionCable.server.broadcast('enr', enr)
-    # Do something later
-  end
+ㄴ
 end

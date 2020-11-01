@@ -1,9 +1,6 @@
 class NotesChannel < ApplicationCable::Channel
 
   def subscribed
-    # total_request= Request.count
-    # fulfilled = Request.where(fulfilled: 1).count
-    # # @unfulfilled = Request.where(fulfilled: 0).count
     stream_from 'abc'
   end
 
@@ -15,11 +12,6 @@ class NotesChannel < ApplicationCable::Channel
 
   def away
     fulfilled = Request.where("cur_counter >= counter").count
-    # if(Note.find(1).text != fulfilled)
-    #   note = Note.find(1)
-    #   note.update!(text: fulfilled)
-    #   ActionCable.server.broadcast('abc', fulfilled)
-    # end
     ActionCable.server.broadcast('abc', fulfilled)
   end
 

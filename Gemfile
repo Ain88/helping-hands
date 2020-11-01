@@ -7,7 +7,7 @@ ruby '2.6.3'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
-gem 'pg'
+gem 'pg', group: [:development, :production]
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
@@ -27,9 +27,11 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
-gem 'action-cable-testing'
+
 gem 'rails_12factor'
 gem 'foreman'
+gem 'sqlite3', group: :test
+gem 'test-unit'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -37,6 +39,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 4.0.1'
+  gem 'action-cable-testing'
 end
 
 group :development do

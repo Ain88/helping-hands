@@ -12,6 +12,7 @@ class EnrollmentsChannel < ApplicationCable::Channel
 
   def away2
     enr = Enrollment.all
+    req = Request.all
     ActionCable.server.broadcast('enr', enr)
   end
 

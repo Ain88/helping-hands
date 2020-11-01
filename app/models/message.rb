@@ -8,5 +8,8 @@ class Message < ApplicationRecord
   validates :requests_id, presence: { message: "Choose request topic" }
   validates :receiver_id, presence: { message: "Choose receiver" }
   validates :sender_id, presence: { message: "Choose sender" }
-  
+
+  after_commit { MessageJob.perform_later self }
+  after_destroy { MessageJob.perform_later self }
+  before_destroy { MessageJob.perform_later self }
 end
