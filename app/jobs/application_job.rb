@@ -15,5 +15,5 @@ class ApplicationJob < ActiveJob::Base
     end
     # Do something later
   end
-ㄴ
+  
 end
