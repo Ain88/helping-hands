@@ -13,3 +13,5 @@ test:
 
 production:
   <<: *default
+  database: helpvan
+  username: ahyoungin
