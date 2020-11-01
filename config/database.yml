@@ -13,4 +13,5 @@ test:
 
 production:
   <<: *default
-  url: postgres://ehsudndqgkvjfn:6ba3e4338fbf967556c2b826c71a60145c8f92475e6651d6195a909db0bc4e92@ec2-54-166-114-48.compute-1.amazonaws.com:5432/d3e11r10kv4fpf
+  database: helpvan
+  username: ahyoungin
