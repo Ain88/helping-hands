@@ -1,6 +1,6 @@
 redis: &redis
   adapter: redis
-  url: redis://redistogo:a1611f7308527d67901dd330a90bf7db@scat.redistogo.com:10474/
+  url: redis://redistogo:011f3ea2d5060d4b361a0d29fd297e3d@scat.redistogo.com:10473/
 
 production: *redis
 
