@@ -3,20 +3,20 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
   helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
   def login!
-    cookies[:user_id] = @user.id
+    session[:user_id] = @user.id
   end
   def logged_in?
-    !!cookies[:user_id]
+    !!session[:user_id]
   end
   def current_user
-    @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
     rescue ActiveRecord::RecordNotFound
   end
   def authorized_user?
     @user == current_user
   end
   def logout!
-    cookies.clear
+    session.clear
   end
 
 end
