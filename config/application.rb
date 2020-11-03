@@ -19,7 +19,7 @@ module HelpVan
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://jolly-benz-c2004d.netlify.app'
+        origins 'https://helpvan-front.herokuapp.com/'
         resource '*', headers: :any, methods: :any
       end
     end
