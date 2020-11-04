@@ -15,10 +15,11 @@ module HelpVan
 
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore)
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://helpvan-front.herokuapp.com/'
+        origins 'http://localhost:3000','https://helpvan-front.herokuapp.com/'
         resource '*', headers: :any, methods: :any
       end
     end
