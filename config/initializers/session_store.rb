@@ -1,5 +1,5 @@
 if Rails.env === 'production'
-  Rails.application.config.session_store :cookie_store, :key => '_HelpVan', :domain => :all
+  Rails.application.config.session_store :cookie_store, key: '_HelpVan', domain: 'https://helpvan-front.herokuapp.com/'
 else
-  Rails.application.config.session_store :cookie_store, :key => '_HelpVan'
+  Rails.application.config.session_store :cookie_store, key: '_HelpVan'
 end
