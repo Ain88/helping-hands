@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://help-van.herokuapp.com'
+    origins 'https://jolly-benz-c2004d.netlify.app'
 
     resource '*',
       headers: :any,
